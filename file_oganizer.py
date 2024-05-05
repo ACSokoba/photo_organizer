@@ -13,9 +13,10 @@ def organize() :
     ignoredFiles = []
 
     for (dirpath, dirnames, filenames) in walk('.'):
+        dirnames[:] = [d for d in dirnames if not d[0] == '.']
         print("root dir  ", dirpath, " Found folders : ", dirnames, "files : ", fileNames)
         for filename in filenames:
-            if filename.endswith('.pyc') or filename.endswith('.py'):
+            if filename.endswith('.pyc') or filename.endswith('.py') or filename.startswith ('.'):
                 ignoredFiles.append(filename)
                 continue
             print("Processing file", filename)
@@ -38,3 +39,14 @@ def organize() :
         print(f'Done, moved {movedItemCount} files(s) \n Skipped these files {ignoredFiles}')
 
 
+
+def main():
+    path = sys.argv[1]
+    if not path:
+        print("Pass a path")
+    if path == "":
+        path = '.'
+    print('received path : ', path)
+
+if __name__ == "__main__":
+    main()

@@ -6,9 +6,9 @@ import shutil
 class TestStringMethods(unittest.TestCase):
 
     def test_create_file(self):
+        #Setup
         path = './'
         createFileNames = ['20241201']
-        # createFolderNames = ['2024']
         openedFiles = []
         # for f in createFolderNames :
         #     os.makedirs(path + f, exist_ok=True)          
@@ -19,12 +19,13 @@ class TestStringMethods(unittest.TestCase):
             of.close()
             
         file_oganizer.organize()
+
+        for fileName in createFileNames:
+            self.assertTrue(fileName[:4] in os.listdir())
                        
-        # self.assertEqual('foo'.upper(), 'FOO')
-        
         #Teardown
-        for x in createFolderNames:
-            shutil.rmtree(path + x)
+        # for x in createFolderNames:
+        #     shutil.rmtree(path + x)
         
         
 
